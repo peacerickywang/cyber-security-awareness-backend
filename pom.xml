@@ -12,7 +12,7 @@
     <artifactId>CyberSecurityAwareness</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>CyberSecurityAwareness</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Project for CyberSecurity Awareness</description>
     <properties>
         <java.version>16</java.version>
     </properties>
@@ -58,6 +58,11 @@
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
         </dependency>
     </dependencies>
 
