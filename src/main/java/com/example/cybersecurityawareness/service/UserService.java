@@ -1,4 +1,4 @@
-package com.example.cybersecurityawareness.service.user;
+package com.example.cybersecurityawareness.service;
 
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;

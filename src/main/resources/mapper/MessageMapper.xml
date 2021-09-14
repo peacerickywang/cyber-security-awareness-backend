@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cybersecurityawareness.mapper.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.example.cybersecurityawareness.model.Message">
+    <!--@mbg.generated-->
+    <!--@Table message-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MESSAGE_CONTENT" jdbcType="LONGVARCHAR" property="messageContent" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="POST_ID" jdbcType="INTEGER" property="postId" />
+  </resultMap>
+  <resultMap id="VoResultMap" type="com.example.cybersecurityawareness.modelVo.MessageVo" extends="BaseResultMap">
+    <association property="user" javaType="com.example.cybersecurityawareness.model.User" column="USER_ID" select="com.example.cybersecurityawareness.mapper.UserMapper.selectByPrimaryKey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, MESSAGE_CONTENT, CREATETIME, UPDATETIME, USER_ID, POST_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from message
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.example.cybersecurityawareness.model.Message" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into message (MESSAGE_CONTENT, CREATETIME, 
+      UPDATETIME, USER_ID, POST_ID
+      )
+    values (#{messageContent,jdbcType=LONGVARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{postId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.example.cybersecurityawareness.model.Message" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageContent != null">
+        MESSAGE_CONTENT,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="postId != null">
+        POST_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageContent != null">
+        #{messageContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="postId != null">
+        #{postId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.cybersecurityawareness.model.Message">
+    <!--@mbg.generated-->
+    update message
+    <set>
+      <if test="messageContent != null">
+        MESSAGE_CONTENT = #{messageContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="postId != null">
+        POST_ID = #{postId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.cybersecurityawareness.model.Message">
+    <!--@mbg.generated-->
+    update message
+    set MESSAGE_CONTENT = #{messageContent,jdbcType=LONGVARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      POST_ID = #{postId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectVoByPostId" parameterType="java.lang.Integer" resultMap="VoResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from message
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPostId" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from message
+    where POST_ID = #{postId,jdbcType=INTEGER}
+  </delete>
+</mapper>

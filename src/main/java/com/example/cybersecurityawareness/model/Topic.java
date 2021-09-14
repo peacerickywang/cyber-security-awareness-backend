@@ -4,12 +4,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-@ApiModel(value="topic")
+@ApiModel(value = "topic")
 @Data
 public class Topic {
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private Integer id;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private String name;
 }

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cybersecurityawareness.mapper.QuestionMapper">
+  <resultMap id="BaseResultMap" type="com.example.cybersecurityawareness.model.Question">
+    <!--@mbg.generated-->
+    <!--@Table question-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="TOPIC_ID" jdbcType="INTEGER" property="topicId" />
+    <result column="TYPE" jdbcType="TINYINT" property="type" />
+    <result column="ANSWER" jdbcType="CHAR" property="answer" />
+    <result column="EXPLAINATION" jdbcType="LONGVARCHAR" property="explaination" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, TITLE, TOPIC_ID, `TYPE`, ANSWER, EXPLAINATION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from question
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from question
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.cybersecurityawareness.model.Question">
+    <!--@mbg.generated-->
+    insert into question (ID, TITLE, TOPIC_ID, 
+      `TYPE`, ANSWER, EXPLAINATION
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{topicId,jdbcType=INTEGER}, 
+      #{type,jdbcType=TINYINT}, #{answer,jdbcType=CHAR}, #{explaination,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.cybersecurityawareness.model.Question">
+    <!--@mbg.generated-->
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+      <if test="topicId != null">
+        TOPIC_ID,
+      </if>
+      <if test="type != null">
+        `TYPE`,
+      </if>
+      <if test="answer != null">
+        ANSWER,
+      </if>
+      <if test="explaination != null">
+        EXPLAINATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="topicId != null">
+        #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=CHAR},
+      </if>
+      <if test="explaination != null">
+        #{explaination,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.cybersecurityawareness.model.Question">
+    <!--@mbg.generated-->
+    update question
+    <set>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="topicId != null">
+        TOPIC_ID = #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `TYPE` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="answer != null">
+        ANSWER = #{answer,jdbcType=CHAR},
+      </if>
+      <if test="explaination != null">
+        EXPLAINATION = #{explaination,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.cybersecurityawareness.model.Question">
+    <!--@mbg.generated-->
+    update question
+    set TITLE = #{title,jdbcType=VARCHAR},
+      TOPIC_ID = #{topicId,jdbcType=INTEGER},
+      `TYPE` = #{type,jdbcType=TINYINT},
+      ANSWER = #{answer,jdbcType=CHAR},
+      EXPLAINATION = #{explaination,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,7 +1,7 @@
 package com.example.cybersecurityawareness.shiro;
 
 import com.example.cybersecurityawareness.model.User;
-import com.example.cybersecurityawareness.service.user.UserService;
+import com.example.cybersecurityawareness.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

@@ -1,6 +1,5 @@
 package com.example.cybersecurityawareness.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.cybersecurityawareness.Utils.DateEditor;
 import org.apache.commons.lang3.StringUtils;
@@ -58,23 +57,24 @@ public class BaseController {
 
     /**
      * 获取分页请求
+     *
      * @return
      */
-    public PageRequest getPageRequest(){
+    public PageRequest getPageRequest() {
         int page = 1;
         int size = 10;
         Sort sort = null;
         try {
             String sortName = request.getParameter("sortName");
             String sortOrder = request.getParameter("sortOrder");
-            if(StringUtils.isNoneBlank(sortName) && StringUtils.isNoneBlank(sortOrder)){
-                if(sortOrder.equalsIgnoreCase("desc")){
+            if (StringUtils.isNoneBlank(sortName) && StringUtils.isNoneBlank(sortOrder)) {
+                if (sortOrder.equalsIgnoreCase("desc")) {
                     sort = Sort.by(Sort.Direction.DESC, sortName);
-                }else{
+                } else {
                     sort = Sort.by(Sort.Direction.ASC, sortName);
                 }
             }
-            if(!org.springframework.util.StringUtils.isEmpty(request.getParameter("pageNumber"))){
+            if (!org.springframework.util.StringUtils.isEmpty(request.getParameter("pageNumber"))) {
                 page = Integer.parseInt(request.getParameter("pageNumber")) - 1;
                 size = Integer.parseInt(request.getParameter("pageSize"));
             }
@@ -88,14 +88,15 @@ public class BaseController {
 
     /**
      * 获取分页请求
+     *
      * @param sort 排序条件
      * @return
      */
-    public PageRequest getPageRequest(Sort sort){
+    public PageRequest getPageRequest(Sort sort) {
         int page = 0;
         int size = 10;
         try {
-            if (null==sort) {
+            if (null == sort) {
                 String sortName = request.getParameter("sortName");
                 String sortOrder = request.getParameter("sortOrder");
                 if (StringUtils.isNoneBlank(sortName) && StringUtils.isNoneBlank(sortOrder)) {
@@ -106,7 +107,7 @@ public class BaseController {
                     }
                 }
             }
-            if(!org.springframework.util.StringUtils.isEmpty(request.getParameter("pageNumber"))){
+            if (!org.springframework.util.StringUtils.isEmpty(request.getParameter("pageNumber"))) {
                 page = Integer.parseInt(request.getParameter("pageNumber")) - 1;
                 size = Integer.parseInt(request.getParameter("pageSize"));
             }
@@ -117,10 +118,10 @@ public class BaseController {
         return pageRequest;
     }
 
-    public JSONObject requestResponse(boolean result,String content){
+    public JSONObject requestResponse(boolean result, Object content) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("result",result);
-        jsonObject.put("message",content);
+        jsonObject.put("result", result);
+        jsonObject.put("message", content);
         return jsonObject;
     }
 }

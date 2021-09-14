@@ -1,6 +1,7 @@
 package com.example.cybersecurityawareness.config;
 
 
+import com.example.cybersecurityawareness.Utils.Constant;
 import com.example.cybersecurityawareness.shiro.CustomRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -69,8 +70,8 @@ public class ShiroConfig {
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        hashedCredentialsMatcher.setHashAlgorithmName("MD5");//散列算法:这里使用MD5算法;
-        hashedCredentialsMatcher.setHashIterations(2);//散列的次数;
+        hashedCredentialsMatcher.setHashAlgorithmName(Constant.HASH_ALGORITHM_TYPE);//散列算法:这里使用MD5算法;
+        hashedCredentialsMatcher.setHashIterations(Constant.HASH_ITERATION);//散列的次数;
         return hashedCredentialsMatcher;
     }
 

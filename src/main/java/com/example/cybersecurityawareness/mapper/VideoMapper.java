@@ -1,13 +1,13 @@
 package com.example.cybersecurityawareness.mapper;
 
-import com.example.cybersecurityawareness.model.Topic;
+import com.example.cybersecurityawareness.model.Video;
+import com.example.cybersecurityawareness.modelVo.VideoVo;
 
 import java.util.List;
 
-public interface TopicMapper {
+public interface VideoMapper {
     /**
      * delete by primary key
-     *
      * @param id primaryKey
      * @return deleteCount
      */
@@ -15,43 +15,42 @@ public interface TopicMapper {
 
     /**
      * insert record to table
-     *
      * @param record the record
      * @return insert count
      */
-    int insert(Topic record);
+    int insert(Video record);
 
     /**
      * insert record to table selective
-     *
      * @param record the record
      * @return insert count
      */
-    int insertSelective(Topic record);
+    int insertSelective(Video record);
 
     /**
      * select by primary key
-     *
      * @param id primary key
      * @return object by primary key
      */
-    Topic selectByPrimaryKey(Integer id);
+    Video selectByPrimaryKey(Integer id);
 
     /**
      * update record selective
-     *
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(Topic record);
+    int updateByPrimaryKeySelective(Video record);
 
     /**
      * update record
-     *
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(Topic record);
+    int updateByPrimaryKey(Video record);
 
-    List<Topic> selectAll();
+    List<Video> selectAll();
+
+    List<VideoVo> selectAllVo();
+
+    VideoVo selectByRandom();
 }

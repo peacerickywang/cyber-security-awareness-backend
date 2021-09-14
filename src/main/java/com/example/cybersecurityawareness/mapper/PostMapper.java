@@ -1,10 +1,8 @@
 package com.example.cybersecurityawareness.mapper;
 
-import com.example.cybersecurityawareness.model.Topic;
+import com.example.cybersecurityawareness.model.Post;import com.example.cybersecurityawareness.modelVo.PostVo;import java.util.List;
 
-import java.util.List;
-
-public interface TopicMapper {
+public interface PostMapper {
     /**
      * delete by primary key
      *
@@ -19,7 +17,7 @@ public interface TopicMapper {
      * @param record the record
      * @return insert count
      */
-    int insert(Topic record);
+    int insert(Post record);
 
     /**
      * insert record to table selective
@@ -27,7 +25,7 @@ public interface TopicMapper {
      * @param record the record
      * @return insert count
      */
-    int insertSelective(Topic record);
+    int insertSelective(Post record);
 
     /**
      * select by primary key
@@ -35,7 +33,7 @@ public interface TopicMapper {
      * @param id primary key
      * @return object by primary key
      */
-    Topic selectByPrimaryKey(Integer id);
+    Post selectByPrimaryKey(Integer id);
 
     /**
      * update record selective
@@ -43,7 +41,7 @@ public interface TopicMapper {
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(Topic record);
+    int updateByPrimaryKeySelective(Post record);
 
     /**
      * update record
@@ -51,7 +49,9 @@ public interface TopicMapper {
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(Topic record);
+    int updateByPrimaryKey(Post record);
 
-    List<Topic> selectAll();
+    List<Post> selectAllSimple();
+
+    PostVo selectVoByPrimaryKey(int id);
 }
