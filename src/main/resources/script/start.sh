@@ -1,1 +1,0 @@
-nohup java -jar CyberSecurityAwareness-0.0.1-SNAPSHOT.jar > CyberSecurityAwareness.log  2>&1 &
