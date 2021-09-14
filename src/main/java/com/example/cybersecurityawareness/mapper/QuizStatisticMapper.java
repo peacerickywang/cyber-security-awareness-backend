@@ -1,12 +1,8 @@
 package com.example.cybersecurityawareness.mapper;
 
-import com.example.cybersecurityawareness.model.Question;
-import com.example.cybersecurityawareness.modelVo.QuestionVo;
+import com.example.cybersecurityawareness.model.QuizStatistic;
 
-import java.util.List;
-import java.util.Map;
-
-public interface QuestionMapper {
+public interface QuizStatisticMapper {
     /**
      * delete by primary key
      * @param id primaryKey
@@ -19,39 +15,33 @@ public interface QuestionMapper {
      * @param record the record
      * @return insert count
      */
-    int insert(Question record);
+    int insert(QuizStatistic record);
 
     /**
      * insert record to table selective
      * @param record the record
      * @return insert count
      */
-    int insertSelective(Question record);
+    int insertSelective(QuizStatistic record);
 
     /**
      * select by primary key
      * @param id primary key
      * @return object by primary key
      */
-    Question selectByPrimaryKey(Integer id);
+    QuizStatistic selectByPrimaryKey(Integer id);
 
     /**
      * update record selective
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKeySelective(Question record);
+    int updateByPrimaryKeySelective(QuizStatistic record);
 
     /**
      * update record
      * @param record the updated record
      * @return update count
      */
-    int updateByPrimaryKey(Question record);
-
-    List<QuestionVo> randomQuestionByType(Map map);
-
-    List<QuestionVo> randomSimpleQuestionByType(Map map);
-
-    QuestionVo selectVoByPrimaryKey(Integer id);
+    int updateByPrimaryKey(QuizStatistic record);
 }

@@ -1,9 +1,15 @@
 package com.example.cybersecurityawareness.service;
 
+import com.example.cybersecurityawareness.modelVo.QuestionVo;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.example.cybersecurityawareness.model.Question;
 import com.example.cybersecurityawareness.mapper.QuestionMapper;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class QuestionService{
 
@@ -40,4 +46,21 @@ public class QuestionService{
         return questionMapper.updateByPrimaryKey(record);
     }
 
+    public List<QuestionVo> randomQuestionByType(int type, int number) {
+        Map map = new HashMap();
+        map.put("type", type);
+        map.put("number", number);
+        return questionMapper.randomQuestionByType(map);
+    }
+
+    public List<QuestionVo> randomSimpleQuestionByType(int type, int number) {
+        Map map = new HashMap();
+        map.put("type", type);
+        map.put("number", number);
+        return questionMapper.randomSimpleQuestionByType(map);
+    }
+
+    public QuestionVo selectVoByPrimaryKey(Integer id) {
+        return questionMapper.selectVoByPrimaryKey(id);
+    }
 }

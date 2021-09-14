@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cybersecurityawareness.mapper.QuizMapper">
+  <resultMap id="BaseResultMap" type="com.example.cybersecurityawareness.model.Quiz">
+    <!--@mbg.generated-->
+    <!--@Table quiz-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_ID" jdbcType="INTEGER" property="userId" />
+    <result column="DURATION" jdbcType="VARCHAR" property="duration" />
+    <result column="TOTAL_QUESTION" jdbcType="INTEGER" property="totalQuestion" />
+    <result column="TRUE_QUESTION" jdbcType="INTEGER" property="trueQuestion" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="COMPLETETIME" jdbcType="TIMESTAMP" property="completetime" />
+  </resultMap>
+  <resultMap id="VoResultMap" type="com.example.cybersecurityawareness.modelVo.QuizVo" extends="BaseResultMap">
+    <collection property="quizStatisticList" ofType="com.example.cybersecurityawareness.model.QuizStatistic" column="ID" select="com.example.cybersecurityawareness.mapper.QuizStatisticMapper.selectByQuizId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, USER_ID, DURATION, TOTAL_QUESTION, TRUE_QUESTION, CREATETIME, COMPLETETIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from quiz
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from quiz
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.example.cybersecurityawareness.model.Quiz" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into quiz (USER_ID, DURATION, TOTAL_QUESTION, 
+      TRUE_QUESTION, CREATETIME, COMPLETETIME
+      )
+    values (#{userId,jdbcType=INTEGER}, #{duration,jdbcType=VARCHAR}, #{totalQuestion,jdbcType=INTEGER}, 
+      #{trueQuestion,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{completetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.example.cybersecurityawareness.model.Quiz" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into quiz
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="duration != null">
+        DURATION,
+      </if>
+      <if test="totalQuestion != null">
+        TOTAL_QUESTION,
+      </if>
+      <if test="trueQuestion != null">
+        TRUE_QUESTION,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="completetime != null">
+        COMPLETETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="totalQuestion != null">
+        #{totalQuestion,jdbcType=INTEGER},
+      </if>
+      <if test="trueQuestion != null">
+        #{trueQuestion,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completetime != null">
+        #{completetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.cybersecurityawareness.model.Quiz">
+    <!--@mbg.generated-->
+    update quiz
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="duration != null">
+        DURATION = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="totalQuestion != null">
+        TOTAL_QUESTION = #{totalQuestion,jdbcType=INTEGER},
+      </if>
+      <if test="trueQuestion != null">
+        TRUE_QUESTION = #{trueQuestion,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completetime != null">
+        COMPLETETIME = #{completetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.cybersecurityawareness.model.Quiz">
+    <!--@mbg.generated-->
+    update quiz
+    set USER_ID = #{userId,jdbcType=INTEGER},
+      DURATION = #{duration,jdbcType=VARCHAR},
+      TOTAL_QUESTION = #{totalQuestion,jdbcType=INTEGER},
+      TRUE_QUESTION = #{trueQuestion,jdbcType=INTEGER},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      COMPLETETIME = #{completetime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectVoByUserId" parameterType="java.lang.Integer" resultMap="VoResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from quiz
+    where USERID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectVoByPrimaryKey" parameterType="java.lang.Integer" resultMap="VoResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from quiz
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

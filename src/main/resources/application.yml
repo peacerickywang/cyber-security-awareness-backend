@@ -9,6 +9,8 @@ spring:
     password: mysql
     url: jdbc:mysql://localhost:3306/cybersecurity?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
+  jackson:
+    time-zone: GMT+8
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml

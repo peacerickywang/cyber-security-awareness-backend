@@ -11,9 +11,16 @@
     <result column="ANSWER" jdbcType="CHAR" property="answer" />
     <result column="EXPLAINATION" jdbcType="LONGVARCHAR" property="explaination" />
   </resultMap>
+  <resultMap id="VoResultMap" type="com.example.cybersecurityawareness.modelVo.QuestionVo" extends="BaseResultMap">
+    <collection property="options" ofType="com.example.cybersecurityawareness.model.Option" column="ID" select="com.example.cybersecurityawareness.mapper.OptionMapper.selectByQuestionId" />
+  </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     ID, TITLE, TOPIC_ID, `TYPE`, ANSWER, EXPLAINATION
+  </sql>
+  <sql id="Simple_Column_List">
+    <!--@mbg.generated-->
+    ID, TITLE, TOPIC_ID, `TYPE`
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -112,4 +119,27 @@
       EXPLAINATION = #{explaination,jdbcType=LONGVARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  <select id="randomQuestionByType" parameterType="Map" resultMap="VoResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from question
+    where TYPE = #{type}
+    ORDER BY RAND() LIMIT #{number}
+  </select>
+  <select id="randomSimpleQuestionByType" parameterType="Map" resultMap="VoResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Simple_Column_List" />
+    from question
+    where TYPE = #{type}
+    ORDER BY RAND() LIMIT #{number}
+  </select>
+  <select id="selectVoByPrimaryKey" parameterType="java.lang.Integer" resultMap="VoResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from question
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

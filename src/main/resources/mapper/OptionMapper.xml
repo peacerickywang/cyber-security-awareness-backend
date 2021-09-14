@@ -82,4 +82,11 @@
       QUESTION_ID = #{questionId,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByQuestionId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from `option`
+    where QUESTION_ID = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>
