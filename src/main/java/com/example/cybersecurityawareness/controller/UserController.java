@@ -96,7 +96,12 @@ public class UserController extends BaseController {
     @ApiOperation("Query User Info")
     @RequestMapping(value = {"/userinfo"}, method = RequestMethod.GET)
     public JSONObject queryUserInfo() {
-        String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
-        return requestResponse(true, userService.selectUserByEmail(email));
+        try {
+            String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
+            return requestResponse(true, userService.selectUserByEmail(email));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return requestResponse(false, e.getMessage());
+        }
     }
 }

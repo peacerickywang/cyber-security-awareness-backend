@@ -11,10 +11,10 @@ public class Post {
     @ApiModelProperty(value = "")
     private Integer id;
 
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(required = true)
     private String postTitle;
 
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(required = true)
     private String postContent;
 
     @ApiModelProperty(value = "")
@@ -23,7 +23,7 @@ public class Post {
     @ApiModelProperty(value = "")
     private Date updatetime;
 
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(required = true)
     private Integer topicId;
 
     @ApiModelProperty(value = "")

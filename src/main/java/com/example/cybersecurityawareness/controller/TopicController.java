@@ -22,7 +22,12 @@ public class TopicController extends BaseController {
     @ApiOperation("Query All Topics")
     @RequestMapping(value = {"/topic"}, method = RequestMethod.GET)
     public JSONObject selectAllTopics() {
-        List<Topic> topicList = topicService.selectAll();
-        return requestResponse(true, topicList);
+        try {
+            List<Topic> topicList = topicService.selectAll();
+            return requestResponse(true, topicList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return requestResponse(false, e.getMessage());
+        }
     }
 }

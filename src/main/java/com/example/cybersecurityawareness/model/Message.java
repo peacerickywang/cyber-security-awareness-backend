@@ -11,7 +11,7 @@ public class Message {
     @ApiModelProperty(value="")
     private Integer id;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(required = true)
     private String messageContent;
 
     @ApiModelProperty(value="")

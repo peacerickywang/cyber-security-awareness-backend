@@ -32,15 +32,25 @@ public class MessageBoardController extends BaseController {
     @ApiOperation("Query Posts by Page")
     @RequestMapping(value = {"/post/page"}, method = RequestMethod.GET)
     public JSONObject selectByPage(@RequestParam int pageNum, @RequestParam int pageSize) {
-        PageInfo<Post> postPageInfo = postService.selectByPage(pageNum, pageSize);
-        return requestResponse(true, postPageInfo);
+        try {
+            PageInfo<Post> postPageInfo = postService.selectByPage(pageNum, pageSize);
+            return requestResponse(true, postPageInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return requestResponse(false, e.getMessage());
+        }
     }
 
     @ApiOperation("Query Post Detail")
     @RequestMapping(value = {"/post/{id}"}, method = RequestMethod.GET)
     public JSONObject selectPostInfo(@PathVariable int id) {
-        PostVo postInfo = postService.selectVoByPrimaryKey(id);
-        return requestResponse(true, postInfo);
+        try {
+            PostVo postInfo = postService.selectVoByPrimaryKey(id);
+            return requestResponse(true, postInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return requestResponse(false, e.getMessage());
+        }
     }
 
     @ApiOperation("Post")
@@ -53,11 +63,11 @@ public class MessageBoardController extends BaseController {
             post.setUserId(user.getId());
             post.setCreatetime(new Date());
             postService.insertSelective(post);
+            return requestResponse(true, "Post success.");
         } catch (Exception e) {
             e.printStackTrace();
             return requestResponse(false, e.getMessage());
         }
-        return requestResponse(true, "Post success.");
     }
 
     @ApiOperation("Reply Post")
@@ -73,11 +83,11 @@ public class MessageBoardController extends BaseController {
             message.setCreatetime(new Date());
             messageService.insertSelective(message);
             postService.updateByPrimaryKeySelective(post);
+            return requestResponse(true, "Reply success.");
         } catch (Exception e) {
             e.printStackTrace();
             return requestResponse(false, e.getMessage());
         }
-        return requestResponse(true, "Reply success.");
     }
 
     @ApiOperation("Delete Post")
@@ -87,11 +97,11 @@ public class MessageBoardController extends BaseController {
         try {
             messageService.deleteByPostId(postId);
             postService.deleteByPrimaryKey(postId);
+            return requestResponse(true, "Delete Post success.");
         } catch (Exception e) {
             e.printStackTrace();
             return requestResponse(false, e.getMessage());
         }
-        return requestResponse(true, "Delete Post success.");
     }
 
     @ApiOperation("Delete Reply")
@@ -100,10 +110,10 @@ public class MessageBoardController extends BaseController {
     public JSONObject deleteReply(@RequestParam int messageId) {
         try {
             messageService.deleteByPrimaryKey(messageId);
+            return requestResponse(true, "Delete Reply success.");
         } catch (Exception e) {
             e.printStackTrace();
             return requestResponse(false, e.getMessage());
         }
-        return requestResponse(true, "Delete Reply success.");
     }
 }

@@ -26,14 +26,24 @@ public class VideoController extends BaseController {
     @ApiOperation("Query Video by Page")
     @RequestMapping(value = {"/video/page"}, method = RequestMethod.GET)
     public JSONObject selectByPage(@RequestParam int pageNum, @RequestParam int pageSize) {
-        PageInfo<VideoVo> videoPageInfo = videoService.selectByPage(pageNum, pageSize);
-        return requestResponse(true, videoPageInfo);
+        try {
+            PageInfo<VideoVo> videoPageInfo = videoService.selectByPage(pageNum, pageSize);
+            return requestResponse(true, videoPageInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return requestResponse(false, e.getMessage());
+        }
     }
 
     @ApiOperation("Random Video")
     @RequestMapping(value = {"/video/random"}, method = RequestMethod.GET)
     public JSONObject selectByRandom() {
-        VideoVo videoPageInfo = videoService.selectByRandom();
-        return requestResponse(true, videoPageInfo);
+        try {
+            VideoVo videoPageInfo = videoService.selectByRandom();
+            return requestResponse(true, videoPageInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return requestResponse(false, e.getMessage());
+        }
     }
 }
