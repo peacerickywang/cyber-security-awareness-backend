@@ -37,12 +37,14 @@ public class QuizController extends BaseController {
             QuizVo quizVo = new QuizVo();
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
             User user = userService.selectUserByEmail(email);
+            if (user == null) {
+                return requestResponse(false, "Please login first.");
+            }
             Quiz quiz = new Quiz();
             quiz.setUserId(user.getId());
             quiz.setCreatetime(new Date());
             quiz.setTotalQuestion(Constant.TRUE_OR_FALSE_NUMBER+Constant.MULTIPLE_NUMBER);
             quizService.insertSelective(quiz);
-
             quizVo.setId(quiz.getId());
             quizVo.setTotalQuestion(quiz.getTotalQuestion());
             quizVo.setCreatetime(quiz.getCreatetime());
@@ -64,6 +66,9 @@ public class QuizController extends BaseController {
         try {
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
             User user = userService.selectUserByEmail(email);
+            if (user == null) {
+                return requestResponse(false, "Please login first.");
+            }
             Quiz quiz = new Quiz();
             quiz.setUserId(user.getId());
             quiz.setCreatetime(new Date());
@@ -179,6 +184,9 @@ public class QuizController extends BaseController {
         try {
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
             User user = userService.selectUserByEmail(email);
+            if (user == null) {
+                return requestResponse(false, "Please login first.");
+            }
             List<QuizVo> quizVoList = quizService.selectVoByUserId(user.getId());
             return requestResponse(true, quizVoList);
         } catch (Exception e) {

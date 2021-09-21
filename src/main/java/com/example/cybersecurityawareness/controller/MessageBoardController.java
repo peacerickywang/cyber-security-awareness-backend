@@ -60,6 +60,9 @@ public class MessageBoardController extends BaseController {
         try {
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
             User user = userService.selectUserByEmail(email);
+            if (user == null) {
+                return requestResponse(false, "Please login first.");
+            }
             post.setUserId(user.getId());
             post.setCreatetime(new Date());
             postService.insertSelective(post);
@@ -79,6 +82,9 @@ public class MessageBoardController extends BaseController {
             post.setUpdatetime(new Date());
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
             User user = userService.selectUserByEmail(email);
+            if (user == null) {
+                return requestResponse(false, "Please login first.");
+            }
             message.setUserId(user.getId());
             message.setCreatetime(new Date());
             messageService.insertSelective(message);

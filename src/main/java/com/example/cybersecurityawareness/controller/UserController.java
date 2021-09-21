@@ -98,6 +98,9 @@ public class UserController extends BaseController {
     public JSONObject queryUserInfo() {
         try {
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
+            if (StringUtils.isEmpty(email)) {
+                return requestResponse(false, "Please login first.");
+            }
             return requestResponse(true, userService.selectUserByEmail(email));
         } catch (Exception e) {
             e.printStackTrace();
