@@ -59,10 +59,10 @@ public class MessageBoardController extends BaseController {
     public JSONObject post(@RequestBody Post post) {
         try {
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
-            User user = userService.selectUserByEmail(email);
-            if (user == null) {
+            if (email.equalsIgnoreCase("null")){
                 return requestResponse(false, "Please login first.");
             }
+            User user = userService.selectUserByEmail(email);
             post.setUserId(user.getId());
             post.setCreatetime(new Date());
             postService.insertSelective(post);
@@ -81,10 +81,10 @@ public class MessageBoardController extends BaseController {
             Post post = postService.selectByPrimaryKey(message.getPostId());
             post.setUpdatetime(new Date());
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
-            User user = userService.selectUserByEmail(email);
-            if (user == null) {
+            if (email.equalsIgnoreCase("null")){
                 return requestResponse(false, "Please login first.");
             }
+            User user = userService.selectUserByEmail(email);
             message.setUserId(user.getId());
             message.setCreatetime(new Date());
             messageService.insertSelective(message);

@@ -2,6 +2,7 @@ package com.example.cybersecurityawareness.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.cybersecurityawareness.Utils.Constant;
+import com.example.cybersecurityawareness.Utils.TokenUtil;
 import com.example.cybersecurityawareness.model.User;
 import com.example.cybersecurityawareness.service.UserService;
 import io.swagger.annotations.Api;
@@ -15,10 +16,12 @@ import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
+import org.springframework.http.HttpRequest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Api(tags = "User API")
@@ -66,7 +69,7 @@ public class UserController extends BaseController {
 
     @ApiOperation("User Login")
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public JSONObject login(@RequestBody User user) {
+    public JSONObject login(@RequestBody User user, HttpServletRequest httpServletRequest) {
         if (StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPassword())) {
             return requestResponse(false, "Please enter Email or Password.");
         }
@@ -75,6 +78,8 @@ public class UserController extends BaseController {
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getEmail(), user.getPassword());
         try {
             subject.login(usernamePasswordToken);
+            String token = TokenUtil.getToken(usernamePasswordToken.getUsername(), usernamePasswordToken.getUsername(), httpServletRequest.getRemoteAddr());
+            return requestResponse(true, token);
         } catch (UnknownAccountException e) {
             return requestResponse(false, "No account exists.");
         } catch (AuthenticationException e) {
@@ -82,7 +87,6 @@ public class UserController extends BaseController {
         } catch (AuthorizationException e) {
             return requestResponse(false, "Authorization failed.");
         }
-        return requestResponse(true, "Login success.");
     }
 
     @ApiOperation("User Logout")
@@ -98,9 +102,10 @@ public class UserController extends BaseController {
     public JSONObject queryUserInfo() {
         try {
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
-            if (StringUtils.isEmpty(email)) {
+            if (email.equalsIgnoreCase("null")){
                 return requestResponse(false, "Please login first.");
             }
+            User user = userService.selectUserByEmail(email);
             return requestResponse(true, userService.selectUserByEmail(email));
         } catch (Exception e) {
             e.printStackTrace();

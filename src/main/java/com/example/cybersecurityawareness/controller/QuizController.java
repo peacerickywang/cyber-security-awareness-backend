@@ -6,10 +6,12 @@ import com.example.cybersecurityawareness.model.*;
 import com.example.cybersecurityawareness.modelVo.QuestionVo;
 import com.example.cybersecurityawareness.modelVo.QuizVo;
 import com.example.cybersecurityawareness.service.*;
+import com.github.pagehelper.util.StringUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -36,10 +38,10 @@ public class QuizController extends BaseController {
         try {
             QuizVo quizVo = new QuizVo();
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
-            User user = userService.selectUserByEmail(email);
-            if (user == null) {
+            if (email.equalsIgnoreCase("null")){
                 return requestResponse(false, "Please login first.");
             }
+            User user = userService.selectUserByEmail(email);
             Quiz quiz = new Quiz();
             quiz.setUserId(user.getId());
             quiz.setCreatetime(new Date());
@@ -65,10 +67,10 @@ public class QuizController extends BaseController {
     public JSONObject generateNewSimpleQuiz() {
         try {
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
-            User user = userService.selectUserByEmail(email);
-            if (user == null) {
+            if (email.equalsIgnoreCase("null")){
                 return requestResponse(false, "Please login first.");
             }
+            User user = userService.selectUserByEmail(email);
             Quiz quiz = new Quiz();
             quiz.setUserId(user.getId());
             quiz.setCreatetime(new Date());
@@ -183,10 +185,10 @@ public class QuizController extends BaseController {
     public JSONObject queryQuizByUser() {
         try {
             String email = String.valueOf(SecurityUtils.getSubject().getPrincipal());
-            User user = userService.selectUserByEmail(email);
-            if (user == null) {
+            if (email.equalsIgnoreCase("null")){
                 return requestResponse(false, "Please login first.");
             }
+            User user = userService.selectUserByEmail(email);
             List<QuizVo> quizVoList = quizService.selectVoByUserId(user.getId());
             return requestResponse(true, quizVoList);
         } catch (Exception e) {
