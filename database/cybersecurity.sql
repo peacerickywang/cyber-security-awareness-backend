@@ -167,7 +167,6 @@ CREATE TABLE `question` (
 -- ----------------------------
 -- Records of question
 -- ----------------------------
-INSERT INTO `question` VALUES ('0', 'What is an Information Security Policy?', '1', '1', 'A', 'Information Security Policy is a document that sets the standards and processes your firm uses to secure your network and data');
 INSERT INTO `question` VALUES ('1', 'Even if a public Wi-Fi network requires a password, other users can potentially view the sensitive information a user sends across that Wi-Fi network.', '1', '0', '0', 'Public wireless networks are not secure, and they can give away your information.');
 INSERT INTO `question` VALUES ('2', 'Turning off the GPS function of your smartphone prevents any tracking of your phone��s location.', '1', '0', '0', 'In addition to GPS, smartphones can also be tracked using the cellphone towers or Wi-Fi networks that the phone is connected to.');
 INSERT INTO `question` VALUES ('3', 'Using your children\'s or pet\'s names is a good way to create a password.', '1', '0', '0', 'Strong passwords should be set to protect your accounts and information. Strong passwords contain numbers, uppercase letters, lowercase letters and symbols.');

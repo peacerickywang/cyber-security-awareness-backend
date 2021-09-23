@@ -13,7 +13,7 @@ public class Question {
     @ApiModelProperty(value = "")
     private String title;
 
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(required = true)
     private Integer topicId;
 
     @ApiModelProperty(value = "")

@@ -109,6 +109,8 @@ public class QuizController extends BaseController {
             Map<Integer, QuizStatistic> quizStatisticsMap = new HashMap();
             for (Topic topic : topicList) {
                 QuizStatistic quizStatistic = new QuizStatistic();
+                quizStatistic.setTotalCount(0);
+                quizStatistic.setTrueCount(0);
                 quizStatistic.setQuizId(quizVo.getId());
                 quizStatistic.setTopicId(topic.getId());
                 quizStatisticsMap.put(topic.getId(), quizStatistic);
