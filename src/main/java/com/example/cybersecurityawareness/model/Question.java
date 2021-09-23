@@ -4,24 +4,24 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-@ApiModel(value="question")
+@ApiModel(value = "question")
 @Data
 public class Question {
-    @ApiModelProperty(value="")
+    @ApiModelProperty(required = true)
     private Integer id;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private String title;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private Integer topicId;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private Byte type;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private String answer;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private String explaination;
 }

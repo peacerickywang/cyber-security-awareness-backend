@@ -4,18 +4,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-@ApiModel(value="`option`")
+@ApiModel(value = "`option`")
 @Data
 public class Option {
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private Integer id;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private String key;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private String value;
 
-    @ApiModelProperty(value="")
+    @ApiModelProperty(value = "")
     private Integer questionId;
 }
