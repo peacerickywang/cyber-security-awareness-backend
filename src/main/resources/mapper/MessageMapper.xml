@@ -114,7 +114,7 @@
     select
     <include refid="Base_Column_List" />
     from message
-    where ID = #{id,jdbcType=INTEGER}
+    where POST_ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPostId" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
