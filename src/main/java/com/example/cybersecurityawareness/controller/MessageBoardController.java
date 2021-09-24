@@ -85,9 +85,12 @@ public class MessageBoardController extends BaseController {
                 return requestResponse(false, "Please login first.");
             }
             User user = userService.selectUserByEmail(email);
-            message.setUserId(user.getId());
-            message.setCreatetime(new Date());
-            messageService.insertSelective(message);
+            Message newMessage = new Message();
+            newMessage.setMessageContent(message.getMessageContent());
+            newMessage.setPostId(message.getPostId());
+            newMessage.setUserId(user.getId());
+            newMessage.setCreatetime(new Date());
+            messageService.insertSelective(newMessage);
             postService.updateByPrimaryKeySelective(post);
             return requestResponse(true, "Reply success.");
         } catch (Exception e) {
