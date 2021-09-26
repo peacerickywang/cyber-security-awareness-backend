@@ -39,12 +39,13 @@ public class UserController extends BaseController {
     @ApiOperation("User Register")
     @RequestMapping(value = {"/register"}, method = RequestMethod.POST)
     @Transactional()
-    public JSONObject register(@RequestParam("email") String email, @RequestParam("password") String password) {
+    public JSONObject register(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String password) {
         User user = userService.selectUserByEmail(email);
         if (user != null) {
             return requestResponse(false, "Account exists");
         }
         user = new User();
+        user.setUsername(username);
         user.setEmail(email);
         /**
          * SALT VALUE

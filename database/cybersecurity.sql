@@ -10,11 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50648
 File Encoding         : 65001
 
-Date: 2021-09-14 15:10:51
+Date: 2021-09-26 17:36:28
 */
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `cybersecurity` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `cybersecurity`;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -267,6 +265,7 @@ INSERT INTO `topic` VALUES ('3', 'What to do about Phishing emails');
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USERNAME` varchar(255) DEFAULT NULL,
   `EMAIL` varchar(255) DEFAULT NULL,
   `PASSWORD` varchar(255) DEFAULT NULL,
   `SALT` varchar(255) DEFAULT NULL,

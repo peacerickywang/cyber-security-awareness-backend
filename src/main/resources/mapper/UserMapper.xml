@@ -5,6 +5,7 @@
     <!--@mbg.generated-->
     <!--@Table `user`-->
     <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
     <result column="EMAIL" jdbcType="VARCHAR" property="email" />
     <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
     <result column="SALT" jdbcType="VARCHAR" property="salt" />
@@ -12,7 +13,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    ID, EMAIL, `PASSWORD`, SALT, CREATETIME
+    ID, USERNAME, EMAIL, `PASSWORD`, SALT, CREATETIME
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -28,15 +29,18 @@
   </delete>
   <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.example.cybersecurityawareness.model.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into `user` (EMAIL, `PASSWORD`, SALT, 
-      CREATETIME)
-    values (#{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP})
+    insert into `user` (USERNAME, EMAIL, `PASSWORD`, 
+      SALT, CREATETIME)
+    values (#{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.example.cybersecurityawareness.model.User" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into `user`
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        USERNAME,
+      </if>
       <if test="email != null">
         EMAIL,
       </if>
@@ -51,6 +55,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
@@ -69,6 +76,9 @@
     <!--@mbg.generated-->
     update `user`
     <set>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
       <if test="email != null">
         EMAIL = #{email,jdbcType=VARCHAR},
       </if>
@@ -87,14 +97,14 @@
   <update id="updateByPrimaryKey" parameterType="com.example.cybersecurityawareness.model.User">
     <!--@mbg.generated-->
     update `user`
-    set EMAIL = #{email,jdbcType=VARCHAR},
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
       `PASSWORD` = #{password,jdbcType=VARCHAR},
       SALT = #{salt,jdbcType=VARCHAR},
       CREATETIME = #{createtime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectUserByEmail" parameterType="java.lang.String" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
     select
     <include refid="Base_Column_List" />
     from `user`
