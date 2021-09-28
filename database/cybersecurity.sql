@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50648
 File Encoding         : 65001
 
-Date: 2021-09-26 17:36:28
+Date: 2021-09-27 16:11:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -166,7 +166,7 @@ CREATE TABLE `question` (
 -- Records of question
 -- ----------------------------
 INSERT INTO `question` VALUES ('1', 'Even if a public Wi-Fi network requires a password, other users can potentially view the sensitive information a user sends across that Wi-Fi network.', '1', '0', '0', 'Public wireless networks are not secure, and they can give away your information.');
-INSERT INTO `question` VALUES ('2', 'Turning off the GPS function of your smartphone prevents any tracking of your phone��s location.', '1', '0', '0', 'In addition to GPS, smartphones can also be tracked using the cellphone towers or Wi-Fi networks that the phone is connected to.');
+INSERT INTO `question` VALUES ('2', 'Turning off the GPS function of your smartphone prevents any tracking of your phone\'s location.', '1', '0', '0', 'In addition to GPS, smartphones can also be tracked using the cellphone towers or Wi-Fi networks that the phone is connected to.');
 INSERT INTO `question` VALUES ('3', 'Using your children\'s or pet\'s names is a good way to create a password.', '1', '0', '0', 'Strong passwords should be set to protect your accounts and information. Strong passwords contain numbers, uppercase letters, lowercase letters and symbols.');
 INSERT INTO `question` VALUES ('4', 'Whenever possible you should allow your web browser to remember passwords so you don\'t have to write them down.', '1', '0', '0', 'Don\'t give your password to anyone, other people will get it through your browser.');
 INSERT INTO `question` VALUES ('5', 'When you receive a link on Facebook from an unidentified and unsecured source, do not open it easily.', '1', '0', '1', 'Do not open unsafe links.');
@@ -271,11 +271,32 @@ CREATE TABLE `user` (
   `SALT` varchar(255) DEFAULT NULL,
   `CREATETIME` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', null, 'tornadodick@126.com', '43cccff228db2d999ae348fd7d5c4280', '05f0fbd4f5314c1777bcd98bab988382', '2021-09-14 09:35:44');
+INSERT INTO `user` VALUES ('2', null, '123', '5905b8477b84dbb37013dabb10151850', '15dd5b7f45293915073be9fa53c790b2', '2021-09-22 12:31:38');
+INSERT INTO `user` VALUES ('3', null, '1234', '58b437f1148e7cd7c8f7a441610e8999', 'eb15253f13987ff057a0ffe03ea8afc6', '2021-09-23 03:35:29');
+INSERT INTO `user` VALUES ('4', null, '12345', 'd42bc990d09a59e86e8418ff6fb949a5', '172ec01686f29a5ce1228f292f9a6895', '2021-09-23 04:04:42');
+INSERT INTO `user` VALUES ('5', null, '12', '235e523f3ca980d88bb59ade8f26cf11', '8430ba9717c1653e894b5f684835e786', '2021-09-23 04:13:54');
+INSERT INTO `user` VALUES ('6', null, '123456', 'e25581f782157abd0e50d12891210b14', '137ac675d5cacfb25575c9ad08ceede6', '2021-09-24 03:14:00');
+INSERT INTO `user` VALUES ('7', null, '1', 'da5869f92cc8fa63f23dcb17e0ba01e0', '3fed228176d8956ba4014fe380c9e4d9', '2021-09-24 03:42:40');
+INSERT INTO `user` VALUES ('8', null, '112', '126f0cf2bc151482e702b401e804139c', '40cb6013a27efa18e4b3f8ea76f4af37', '2021-09-24 03:44:54');
+INSERT INTO `user` VALUES ('9', null, '11', '628715298cfbc858ec6e3c5870a7c9bc', '840b370566258b4bfad20d9ee20fe385', '2021-09-24 03:46:08');
+INSERT INTO `user` VALUES ('10', null, '13', '75d4474fff2ecb2b1eb752d8f21de5ac', '415a8f76276d7fe03c93fd8bc437a043', '2021-09-24 03:46:18');
+INSERT INTO `user` VALUES ('11', null, '14', '5363a0a2a74a92d51252eb39b342bcad', '7a41a31fced6e4136a83af77ade0cfb2', '2021-09-24 03:49:01');
+INSERT INTO `user` VALUES ('12', null, '15', 'a7d8486c1d8abb5485004d7fd76955de', 'd7d04eefbbadf42baeb57b82da3c538f', '2021-09-24 03:49:07');
+INSERT INTO `user` VALUES ('13', null, '1234@qq.com', '09112f48720051f42983d645ec3b9014', '1b1c3245e5bbba30cabe162f70eadcc7', '2021-09-24 09:14:35');
+INSERT INTO `user` VALUES ('14', null, '113', '8191dce150e685dcc56eab5f31e0d4fd', '69f118d0120718d46f9c1d4c4c899691', '2021-09-24 09:27:09');
+INSERT INTO `user` VALUES ('15', null, '114', '140b6041741bfc5ee2729e83134071ac', 'b092eb629765e47127a44ffb1f00e939', '2021-09-24 09:27:19');
+INSERT INTO `user` VALUES ('16', null, '115', '5479accd1e06b74db0f4c1b2798f3b45', '90f179a9aee258ff60f23cfe14ccf6e8', '2021-09-24 09:27:29');
+INSERT INTO `user` VALUES ('17', null, '116', '46a0e38c52f0bc8dd0e506ea4c78ecb8', 'cbf6a3c9f0f4274188fc365beb005443', '2021-09-25 00:55:06');
+INSERT INTO `user` VALUES ('18', null, '117', '40d63e8472f62c1746065b9a25b4c8d1', 'dcc31c195f82743c3e695da24447c919', '2021-09-25 00:55:16');
+INSERT INTO `user` VALUES ('19', null, 'test@test.com', '8c22ef56e848a7d9811e058672d8780d', '0a7e07cbc524e8235dc8ef78677da7d5', '2021-09-26 02:31:56');
+INSERT INTO `user` VALUES ('20', null, 'johnnyshihao@hotmail.com', 'ac30320c7b804eead25c17277065d463', '1f3427c344358d27a3256d02b818ee19', '2021-09-26 03:57:12');
+INSERT INTO `user` VALUES ('21', null, 'Leehaoyu0524@163.com', '1de8beca3edc52546eacb797b782b7dd', '29898c9901720a4416ee297a4c2a225c', '2021-09-26 05:27:59');
 
 -- ----------------------------
 -- Table structure for video

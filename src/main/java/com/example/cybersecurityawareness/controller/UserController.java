@@ -16,12 +16,12 @@ import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
-import org.springframework.http.HttpRequest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @Api(tags = "User API")
@@ -70,7 +70,7 @@ public class UserController extends BaseController {
 
     @ApiOperation("User Login")
     @RequestMapping(value = {"/login"}, method = RequestMethod.POST)
-    public JSONObject login(@RequestBody User user, HttpServletRequest httpServletRequest) {
+    public JSONObject login(@RequestBody User user, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         if (StringUtils.isEmpty(user.getEmail()) || StringUtils.isEmpty(user.getPassword())) {
             return requestResponse(false, "Please enter Email or Password.");
         }
