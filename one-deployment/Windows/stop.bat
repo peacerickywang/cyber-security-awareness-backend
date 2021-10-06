@@ -1,0 +1,2 @@
+net stop CyberSecurityAwarenessBackend
+CyberSecurityAwarenessBackend.exe uninstall

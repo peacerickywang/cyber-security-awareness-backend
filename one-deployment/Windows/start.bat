@@ -1,0 +1,2 @@
+CyberSecurityAwarenessBackend.exe install
+net start CyberSecurityAwarenessBackend
